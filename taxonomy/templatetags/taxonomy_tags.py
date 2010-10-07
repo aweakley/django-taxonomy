@@ -12,7 +12,7 @@ class TaxonomyForObjectNode(Node):
 
     def render(self, context):
         context[self.context_var] = \
-            Taxon.objects.get_for_object(self.obj.resolve(context))
+            Taxon.objects.get_for_object(self.obj.resolve(context)).order_by("term__taxonomy")
         return ''
 
 def do_taxonomy_for_object(parser, token):
